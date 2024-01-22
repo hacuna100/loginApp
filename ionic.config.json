@@ -1,0 +1,7 @@
+{
+  "name": "streetEatsApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
