@@ -1,0 +1,63 @@
+<ion-card class="login-primary-theme">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">Sign Up</ion-card-title>
+  </ion-card-header>
+
+  <form [formGroup]="accountCreateForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item class="ion-no-padding">
+        <ion-select labelPlacement="stacked" placeholder="Select Account Type" interface="popover" formControlName="accountTypeControl">
+          <div slot="label">Account Type</div>
+          <ion-select-option [value]="false">Individual</ion-select-option>
+          <ion-select-option [value]="true">Business</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="firstNameControl" labelPlacement="stacked" placeholder="John">
+          <div slot="label">First Name <ion-text color="danger" *ngIf="accountVar('fName')?.errors?.['required']">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="lastNameControl" labelPlacement="stacked" placeholder="Doe">
+          <div slot="label">Last Name <ion-text color="danger" *ngIf="accountVar('lName')?.errors?.['required']">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="userNameControl" labelPlacement="stacked" placeholder="jdoe100">
+          <div slot="label">Username <ion-text color="danger" *ngIf="accountVar('uName')?.errors?.['required']">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="phoneNumControl" labelPlacement="stacked" placeholder="(502) 555-5555" [maskito]="phoneMask" [maskitoElement]="maskPredicate">
+          <div slot="label">Phone Number <ion-text color="danger" *ngIf="accountVar('pNum')?.errors?.['required']">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="emailControl" labelPlacement="stacked" placeholder="jdoe100@domain.com">
+          <div slot="label">Email <ion-text color="danger" *ngIf="accountVar('email')?.errors?.['required']">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="pwdControl" labelPlacement="stacked" label="Password" type="{{ showPassword1 ? 'text' : 'password'}}" name="pwd" id="open-toast">
+          <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="showHidden1()" tabindex="-1">
+            <ion-icon slot="icon-only" name="{{ showPassword1 ? 'eye-off' : 'eye'}}" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-input>
+        <ion-toast trigger="open-toast" 
+        message=" Password Requirements:
+        Your password needs to be a minimum of 8 characters, 1 upper case, 1 lower case, 
+        1 number, and 1 special character (e.g., !, @, #, $)" [duration]="5000"></ion-toast>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <ion-input formControlName="pwdConfirmControl" labelPlacement="stacked" label="Confirm Password" type="{{ showPassword2 ? 'text' : 'password'}}" name="pwdConfirm">
+          <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="showHidden2()" tabindex="-1">
+            <ion-icon slot="icon-only" name="{{ showPassword2 ? 'eye-off' : 'eye'}}" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-text-center register-btns">
+      <ion-button shape="round" fill="outline" (click)="cancel()">Cancel</ion-button><ion-button shape="round" type="submit">Submit</ion-button>
+    </div>
+  </form>
+</ion-card>

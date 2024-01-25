@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true">
+  <ion-text class="title-primary-theme app-title">
+    <h1>Login App</h1>
+  </ion-text>
+  <ion-card class="login-primary-theme">
+    <ion-card-header>
+      <div class="login-title ion-text-center">Login</div>
+    </ion-card-header>
+    <form [formGroup]="loginGroupForm" (ngSubmit)="onLogin()">
+      <ion-list>
+        <ion-item class="ion-no-padding">
+          <ion-input labelPlacement="stacked" placeholder="Type your username" formControlName="usernameLoginControl">
+            <div slot="label">Username <ion-text color="danger" *ngIf="loginVar('username')?.errors?.['required']">(Required)</ion-text></div>
+            <ion-icon slot="start" name="person-outline" aria-hidden="true" class="login-icon"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ion-item class="ion-no-padding">
+          <ion-input labelPlacement="stacked" placeholder="Type your password" type="{{ showPassword ? 'text' : 'password'}}" formControlName="passwordLoginControl">
+            <div slot="label">Password <ion-text color="danger" *ngIf="loginVar('password')?.errors?.['required']">(Required)</ion-text></div>
+            <ion-icon slot="start" name="lock-closed" aria-hidden="true" class="login-icon"></ion-icon>
+            <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="showHidden()">
+              <ion-icon slot="icon-only" name="{{ showPassword ? 'eye-off' : 'eye'}}" aria-hidden="true"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="ion-text-end">
+        <ion-button fill="clear" size="small" id="open-register">Forgot Password?</ion-button>
+      </div>
+      <div class="ion-text-center">
+        <ion-button size="default" shape="round" type="submit">Login</ion-button>
+      </div>
+    </form>
+
+    <div class="ion-text-center register-section">
+      <div>Not a member?</div>
+      <ion-button fill="clear" size="small" class="register-btn" (click)="openRegister()">Sign up now</ion-button>
+    </div>
+  </ion-card>
+</ion-content>
